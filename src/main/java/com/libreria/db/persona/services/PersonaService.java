@@ -45,6 +45,31 @@ public class PersonaService {
 		return personaRepository.save(persona);
 	}
 	
+	@Transactional
+	public Persona edit(Persona persona) throws WebExcepction {
+			
+		if (persona.getNombre().isEmpty() || persona.getNombre() == null) {
+			throw new WebExcepction("Error! debe ingresar un \"Nombre\"");			
+		}
+		if (persona.getApellido().isEmpty() || persona.getApellido() == null) {
+			throw new WebExcepction("Error! debe ingresar un \"Apellido\"");			
+		}
+		if (persona.getEdad() == null || persona.getEdad() < 1) {
+			throw new WebExcepction("Error! debe ingresar una \"Edad\"");			
+		}
+		if (persona.getDni() == null || persona.getDni().isEmpty()) {
+			throw new WebExcepction("Error! debe ingresar el \" N° de DNI\"");			
+		}
+		if (persona.getCiudad() == null) {
+			throw new WebExcepction("Error! debe ingresar una \"Ciudad\"");			
+		} else {
+			persona.setCiudad(ciudadService.findByIdCity(persona.getCiudad()));
+		}
+		
+		return personaRepository.save(persona);
+		
+	}
+	
 	public List<Persona> listAll() {
 		return personaRepository.findAll();
 	}

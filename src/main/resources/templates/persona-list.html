@@ -44,7 +44,7 @@
 			<td th:text="${p.ciudad} == null ? 'Sin Registrar' : ${p.ciudad.nombre} "></td>
             <td>
                 <a sec:authorize="hasRole('ROLE_ADMIN')" class="link-eliminar" th:href="@{/persona/delete}+'?id='+${p.id}">Eliminar</a>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/persona/form}+'?id='+${p.id}">Editar</a>
+                <a th:href="@{/persona/edit}+'?id='+${p.id}">Editar</a>
         </div>
         </tr>
     </tbody>

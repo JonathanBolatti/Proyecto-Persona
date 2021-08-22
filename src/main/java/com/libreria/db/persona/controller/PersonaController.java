@@ -63,6 +63,36 @@ public class PersonaController {
 		}
 		return "redirect:/persona/list";
 	}
+	@GetMapping("/edit")
+	public String editarPersona(Model model, @RequestParam(required = false) String id) {
+		if (id != null) {
+			Optional<Persona> optional = personaService.findById(id);
+			if (optional.isPresent()) {
+				model.addAttribute("persona", optional.get());
+			} else {
+				return "redirect:/persona/list";
+			}
+		} else {
+			model.addAttribute("persona", new Persona());
+		}
+		model.addAttribute("ciudades", ciudadService.listAll()); 
+		return "persona-edit";
+	}
+	
+		@PostMapping("/edit")
+	public String editarPersona(Model model, RedirectAttributes redirect, @ModelAttribute Persona persona) {
+		try {
+			personaService.edit(persona);
+			redirect.addFlashAttribute("success", "Formulario cargado con exito!");
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+			//ante un error, los datos cargados en el formulario no se eliminarian
+			model.addAttribute("persona", persona);
+			model.addAttribute("ciudades", ciudadService.listAll()); 
+			return "persona-edit";	
+		}
+		return "redirect:/persona/list";
+	}
 
 	@GetMapping("/delete")
 	public String eliminarPersona(@RequestParam(required = true) String id) {

@@ -28,7 +28,7 @@
                     <tr>
                         <th>N°</th>
                         <th>Nombre</th>
-                        <th class="acciones">Acciones</th>
+                        <th  class="acciones">Acciones</th>
                     </tr>
                 </thead>
         </div>
@@ -39,8 +39,8 @@
             <td th:text="${iterator.index+1}"></td>
             <td th:text="${c.nombre}"></td>
             <td>
-                <a class="link-eliminar" th:href="@{/ciudad/delete}+'?id='+${c.id}">Eliminar</a>
-                <a th:href="@{/ciudad/form}+'?id='+${c.id}">Editar</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="link-eliminar" th:href="@{/ciudad/delete}+'?id='+${c.id}">Eliminar</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/ciudad/form}+'?id='+${c.id}">Editar</a>
         </div>
         </tr>
     </tbody>
