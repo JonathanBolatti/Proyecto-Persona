@@ -5,6 +5,7 @@ import com.libreria.db.persona.services.CiudadService;
 import com.libreria.db.persona.services.PersonaService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,8 @@ public class PersonaController {
 	@Autowired
 	private CiudadService ciudadService; 
 
+	
+	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/list")
 	public String listarPersonas(Model model, @RequestParam(required = false) String q) {
 		if (q != null) {
