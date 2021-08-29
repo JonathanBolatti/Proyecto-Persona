@@ -340,6 +340,31 @@ body {
 
 }
 
+/* Mostrar errores en la web */
+
+.error__num{
+    color:#fff;
+}
+.error__text{
+    color: #fff;
+    font-size: 3rem;
+    text-align: center;
+}
+.error_img{
+    width: 45%;
+    height: 60%;
+    margin:40px;
+    margin-left: 400px;
+}
+
+.error_img--deg{
+    width: 25%;
+    height: 35%;
+    margin: 40px;
+    margin-left: 525px;
+}
+
+
 
 /* Footer */
 

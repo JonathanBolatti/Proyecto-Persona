@@ -11,7 +11,7 @@ public class Usuario extends Persona{
 	
 	private String username; 
 	private String Password; 
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private Role rol; 
 
 	public String getUserName() {
